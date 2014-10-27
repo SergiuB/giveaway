@@ -94,7 +94,7 @@ h6 {
 }
 
 p {
-  margin: 10px 0 15px 0;
+  margin: 5px 0 5px 0;
 }
 
 footer p {
@@ -262,13 +262,6 @@ Full-Width Styles
   width: 100%;
 }
 
-.inner {
-  position: relative;
-  max-width: 640px;
-  padding: 20px 10px;
-  margin: 0 auto;
-}
-
 #forkme_banner {
   display: block;
   position: absolute;
@@ -294,7 +287,8 @@ Full-Width Styles
 }
 
 #header_wrap .inner {
-  padding: 50px 10px 30px 10px;
+  padding-top: 50px;
+  padding-bottom:  30px;
 }
 
 #project_title {
@@ -366,58 +360,20 @@ Full-Width Styles
   background: #212121;
 }
 
+.min-donation {
+  color: #428bca;
+}
 
 
-/*******************************************************************************
-Small Device Styles
-*******************************************************************************/
 
-@media screen and (max-width: 480px) {
-  body {
-    font-size:14px;
-  }
+.custom-sum {
+  display: inline;
+  width: 100px;
+}
 
-  #downloads {
-    display: none;
-  }
 
-  .inner {
-    min-width: 320px;
-    max-width: 480px;
-  }
-
-  #project_title {
-  font-size: 32px;
-  }
-
-  h1 {
-    font-size: 28px;
-  }
-
-  h2 {
-    font-size: 24px;
-  }
-
-  h3 {
-    font-size: 21px;
-  }
-
-  h4 {
-    font-size: 18px;
-  }
-
-  h5 {
-    font-size: 14px;
-  }
-
-  h6 {
-    font-size: 12px;
-  }
-
-  code, pre {
-    min-width: 320px;
-    max-width: 480px;
-    font-size: 11px;
-  }
-
+@media (min-width: 1200px) {
+    .container{
+        max-width: 970px;
+    }
 }
