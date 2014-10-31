@@ -1,12 +1,37 @@
-angular.module('giveawayApp', ["firebase"])
-  .controller('ItemsController', ['$scope', "$firebase",
-    function($scope, $firebase) {
+angular.module('giveawayApp', ['ui.bootstrap']);
+angular.module('giveawayApp', ["firebase", 'ui.bootstrap'])
+  .controller('ItemsController', ['$scope', "$firebase", "$modal",
+    function($scope, $firebase, $modal) {
       var ref = new Firebase("https://incandescent-inferno-6504.firebaseio.com/items");
       $scope.sync = $firebase(ref);
       $scope.sync.$asObject().$bindTo($scope, "items");
 
       $scope.deadlinePassed = function() {
         return new Date(2014, 10, 4, 23, 59) < new Date();
+      };
+
+      $scope.getArray = function(size) {
+        var arr = [];
+        for (var i = size; i > 0; i--) {
+          arr.push(i);
+        }
+        return arr;
+      };
+
+      $scope.openImage = function(itemId, picIndex) {
+        var modalInstance = $modal.open({
+          templateUrl: 'modalImage.html',
+          controller: 'ModalImgCtrl',
+          size:'lg',
+          resolve: {
+            itemId: function() {
+              return itemId;
+            },
+            picIndex: function() {
+              return picIndex;
+            }
+          }
+        });
       };
     }
 
@@ -62,4 +87,13 @@ angular.module('giveawayApp', ["firebase"])
 
       };
     }
-  ]);
+  ])
+  .controller('ModalImgCtrl', function($scope, $modalInstance, itemId, picIndex) {
+
+  $scope.itemId = itemId;
+  $scope.picIndex = picIndex;
+
+  $scope.ok = function() {
+    $modalInstance.close();
+  };
+});
