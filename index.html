@@ -87,7 +87,7 @@
                   <button type="button" class="btn btn-primary donate-btn" ng-click="donateClick(itemId, nextDonationAmount(itemId) || item.minim)">Donez {{nextDonationAmount(itemId) || item.minim}} RON</button>
                   <div style="padding-top: 5px; padding-left: 30px; display: inline-block">
                     <button type="button" class="btn btn-primary donate-btn" ng-click="donateClick(itemId, customSum)" ng-disabled="!customSum">Donez </button>
-                    <input type="number" class="form-control custom-sum" placeholder="Suma Asta" ng-model="customSum" min="{{item.minim}}" tooltip="After today restriction">
+                    <input type="number" class="form-control custom-sum" placeholder="Suma Asta" ng-model="customSum" min="{{nextDonationAmount(itemId) || item.minim}}" tooltip="After today restriction">
                     <span>RON</span>
                   </div>
                 </div>
