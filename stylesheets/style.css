@@ -1,0 +1,46 @@
+.donateBtns.hideAnimated {
+  height: 0px;
+  overflow: hidden;
+}
+
+.donateBtns {
+  transition: height 0.3s;
+  height: 100px;
+}
+
+.donateForm.showAnimated {
+  height: 150px;
+}
+
+.donateForm {
+  transition: height 0.3s;
+  height: 0px;
+}
+
+.donateField {
+  margin-top: 5px;
+}
+
+.intentText{
+  font-size: 15px;
+  font-family: 'Myriad Pro';
+  font-style: italic;
+}
+
+
+.min-donation {
+  color: #428bca;
+}
+
+.custom-sum {
+  display: inline;
+  width: 110px;
+}
+
+form {
+	padding: 0px;
+}
+
+.prodImg {
+	cursor: pointer; cursor: hand;
+}
