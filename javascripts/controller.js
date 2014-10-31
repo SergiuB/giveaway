@@ -4,7 +4,12 @@ angular.module('giveawayApp', ["firebase"])
       var ref = new Firebase("https://incandescent-inferno-6504.firebaseio.com/items");
       $scope.sync = $firebase(ref);
       $scope.sync.$asObject().$bindTo($scope, "items");
+
+      $scope.deadlinePassed = function() {
+        return new Date(2014, 10, 4, 23, 59) < new Date();
+      };
     }
+
   ])
   .controller('DonationController', ['$scope',
     function($scope) {
@@ -32,12 +37,17 @@ angular.module('giveawayApp', ["firebase"])
 
       };
 
+      $scope.isAvailable = function(itemId) {
+        return !($scope.deadlinePassed() && $scope.items[itemId].donations);
+      };
+
       $scope.nextDonationAmount = function(itemId) {
         var topDonation = $scope.topDonation(itemId);
         return (topDonation) ? topDonation.amount + 10 : null;
       };
 
       $scope.commitDonation = function(itemId) {
+        $scope.donationIntent.timestamp = Date.now();
         $scope.sync.$ref().child(itemId + '/donations').push($scope.donationIntent, function(error) {
           if (error) {
             alert("Ne pare rau, pare ca s-a intamplat ceva neasteptat. Mai apasa o data acum sau revino mai tarziu." + error);
@@ -46,16 +56,9 @@ angular.module('giveawayApp', ["firebase"])
             $scope.$apply(function() {
               $scope.donationIntent = null;
             });
-            alert("Iti multumim " + userName + "!\nTe rugam sa urmaresti periodic pagina pana marti la ora 24 pentru a vedea daca cineva face o donatie mai mare pentru obiectul dorit.\nSorry, e o aplicatie facuta intr-o zi, nu vin update-uri pe email :)");
+            alert("Iti multumim " + userName + "!\n\nTe rugam sa urmaresti periodic pagina pana marti la ora 24 pentru a vedea daca cineva face o donatie mai mare pentru obiectul dorit (e o aplicatie facuta intr-o zi, nu vin update-uri pe email sorry :) )\n\nNoi te vom contacta in cursul zilei de miercuri pentru a stabili detaliile!");
           }
         });
-
-        // if (!$scope.items[itemId].donations) {
-        //   $scope.items[itemId].donations = [];
-        //   $scope.items.$save();
-        // } else {
-        //   $scope.items[itemId].donations.$push($scope.donationIntent);
-        // }
 
       };
     }

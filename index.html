@@ -58,13 +58,14 @@
 
       <p>Te rugam sa arunci o privire pe pozele si descrierea obiectelor de mai jos. Daca iti place ceva, introdu suma in RON pe care esti dispus sa o donezi si lasa un contact (nume si adresa de email).</p>
       <p>Obiectele necesita o donatie minima, care pentru inceput este oricum mult sub valoarea reala.</p>
-      <p>In caz ca sunt mai multi doritori pentru acelasi obiect, va castiga cel care vrea sa faca o donatie mai mare pana marti, adica <b>4 noiembrie 2014, ora 24:00</b>, ora Romaniei.</p>
+      <p>In caz ca sunt mai multi doritori pentru acelasi obiect, va castiga cel care vrea sa faca o donatie mai mare pana marti, adica <b>4 noiembrie 2014, ora 23:59</b>, ora Romaniei.</p>
       <p>Dupa aceasta ora ii vom contacta pe cei care au castigat mini-licitatia pentru donatii si acestia pe urma vor putea sa faca donatia hotarata, pe <a href="http://1000balkan.com/en/challengers/view?hash=14bf27558738c22a7b19407417569c2a94f69031">pagina noastra de profil</a>.</p>
       <p>Dupa data limita, obiectele pentru care nu avem un donator vor fi date primei persoane care face donatia minima.</p>
 
       <h3>The Stuff</h3>
 
       <div class="container" ng-controller="ItemsController">
+        <h4 class="bg-danger" ng-show='deadlinePassed()'>Pentru obiectele la care s-au anuntat doritori licitatia s-a incheiat. Obiectele ramase revin primului doritor care anunta ca face donatia minima pentru ele.</h4>
 
         <div ng-repeat="(itemId, item) in items">
           <div class="row">
@@ -77,9 +78,9 @@
               <h4>{{item.name}}</h4>
               <p>{{item.description}}</p>
               <div ng-controller="DonationController">
-                <div class="donateBtns" ng-class="{hideAnimated: donationIntent}">
+                <div class="text-info" ng-show="topDonation(itemId)">Donatorul de top e <b>{{topDonation(itemId).name}}</b> cu <b>{{topDonation(itemId).amount}} RON</b></div>
+                <div class="donateBtns" ng-class="{hideAnimated: donationIntent}"  ng-show="isAvailable(itemId)">
                   <h5>Donatie minima: <span class="min-donation">{{nextDonationAmount(itemId) || item.minim}}</span> RON</h5>
-                  <div class="text-info" ng-show="topDonation(itemId)">Donatorul de top e <b>{{topDonation(itemId).name}}</b> cu <b>{{topDonation(itemId).amount}} RON</b></div>
                   <button type="button" class="btn btn-primary donate-btn" ng-click="donateClick(itemId, nextDonationAmount(itemId) || item.minim)">Donez {{nextDonationAmount(itemId) || item.minim}} RON</button>
                   <div style="padding-top: 5px; padding-left: 30px; display: inline-block">
                     <button type="button" class="btn btn-primary donate-btn" ng-click="donateClick(itemId, customSum)" ng-disabled="!customSum">Donez </button>
@@ -87,7 +88,7 @@
                     <span>RON</span>
                   </div>
                 </div>
-                <form name="userForm" novalidate class="donateForm" ng-class="{showAnimated: donationIntent}" ng-show='donationIntent'>
+                <form name="userForm" novalidate class="donateForm" ng-class="{showAnimated: donationIntent}" ng-show='donationIntent&&isAvailable(itemId)'>
                   <div ng-class="{'has-error': userForm.name.$invalid}">
                     <input name="name" type="text" class="form-control donateField" placeholder="Nume" ng-model="donationIntent.name" required>
                   </div>
