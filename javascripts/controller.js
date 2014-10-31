@@ -22,7 +22,7 @@ angular.module('giveawayApp', ["firebase", 'ui.bootstrap'])
         var modalInstance = $modal.open({
           templateUrl: 'modalImage.html',
           controller: 'ModalImgCtrl',
-          size:'lg',
+          size: 'lg',
           resolve: {
             itemId: function() {
               return itemId;
@@ -88,12 +88,14 @@ angular.module('giveawayApp', ["firebase", 'ui.bootstrap'])
       };
     }
   ])
-  .controller('ModalImgCtrl', function($scope, $modalInstance, itemId, picIndex) {
+  .controller('ModalImgCtrl', ['$scope', "$modalInstance", "itemId", "picIndex",
+    function($scope, $modalInstance, itemId, picIndex) {
 
-  $scope.itemId = itemId;
-  $scope.picIndex = picIndex;
+      $scope.itemId = itemId;
+      $scope.picIndex = picIndex;
 
-  $scope.ok = function() {
-    $modalInstance.close();
-  };
-});
+      $scope.ok = function() {
+        $modalInstance.close();
+      };
+    }
+  ]);
