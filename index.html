@@ -52,7 +52,7 @@
       <p>Suntem <a href="http://1000balkan.com/en/challengers/view?hash=14bf27558738c22a7b19407417569c2a94f69031">Claudia si Sergiu</a> si participam la <a href="http://1000balkan.com/blog/1000km-balkan-charity-challenge-3rd-edition-1-11-november-2014-2/">1000Km Balkan Charity Challenge</a> pentru <a href="http://1000balkan.com/en/projects/view?id=65">Help Autism</a>!</p>
       <p>Poate ne stii sau poate nu, nu conteaza. Facem sport cu pasiune si in decursul timpului am adunat diverse obiecte, in general legate de activitati outdoor, pe care vrem sa le dam mai departe unor oameni care chiar au nevoie de ele.<br>
       Nu le vindem, nu vrem sa facem bani cu ele. Le dam, iar ceea ce cerem in schimb este o donatie pentru copiii cu autism pe care ii sustinem.<br>
-      In felul asta un obiect folositor isi gaseste un nou proprietar, care in acest fel face o fapta buna! Double win!</p>
+      Un obiect folositor isi gaseste un nou proprietar, care in acest fel face o fapta buna! Double win!</p>
       <p>Chiar daca nu esti interesat, apreciem daca ai putea sa trimiti mai departe!</p>
       <div class="fb-like" data-href="http://sergiub.github.io/giveaway/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
       <div class="g-plus" data-action="share"></div>
@@ -71,8 +71,6 @@
       <div class="container" ng-controller="ItemsController">
         <h4 class="bg-danger" ng-show='deadlinePassed()'>Pentru obiectele la care s-au anuntat doritori licitatia s-a incheiat. Obiectele ramase revin primului doritor care anunta ca face donatia minima pentru ele.</h4>
 
-        <h4 class="bg-info">Lista de obiecte este work in progress! Multumesc ca ai trecut pe aici, revino pana la sfarsitul zilei si o sa gasesti mai multe chestii.</h4>
-
         <div ng-repeat="(itemId, item) in items">
           <div class="row">
             <div class="col-md-7">
@@ -90,7 +88,7 @@
                   <button type="button" class="btn btn-primary donate-btn" ng-click="donateClick(itemId, nextDonationAmount(itemId) || item.minim)">Donez {{nextDonationAmount(itemId) || item.minim}} RON</button>
                   <div style="padding-top: 5px; padding-left: 30px; display: inline-block">
                     <button type="button" class="btn btn-primary donate-btn" ng-click="donateClick(itemId, customSum)" ng-disabled="!customSum">Donez </button>
-                    <input type="number" class="form-control custom-sum" placeholder="Suma Asta" ng-model="customSum" min="{{nextDonationAmount(itemId) || item.minim}}" tooltip="After today restriction">
+                    <input type="number" class="form-control custom-sum" placeholder="Suma Asta" ng-model="customSum" min="{{nextDonationAmount(itemId) || item.minim}}">
                     <span>RON</span>
                   </div>
                 </div>
