@@ -56,7 +56,7 @@ angular.module('giveawayApp', ["firebase"])
             $scope.$apply(function() {
               $scope.donationIntent = null;
             });
-            alert("Iti multumim " + userName + "!\n\nTe rugam sa urmaresti periodic pagina pana marti la ora 24 pentru a vedea daca cineva face o donatie mai mare pentru obiectul dorit (e o aplicatie facuta intr-o zi, nu vin update-uri pe email sorry :) )\n\nNoi te vom contacta in cursul zilei de miercuri pentru a stabili detaliile!");
+            alert("Iti multumim " + userName + "!\n\nTe rugam sa urmaresti periodic pagina pana marti la ora 23:59 pentru a vedea daca cineva face o donatie mai mare pentru obiectul dorit (e o aplicatie facuta intr-o zi, nu vin update-uri pe email sorry :) )\n\nNoi te vom contacta in cursul zilei de miercuri pentru a stabili detaliile!");
           }
         });
 
